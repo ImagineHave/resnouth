@@ -1,0 +1,4 @@
+flask==0.11.1
+pymongo
+flask-jwt-extended
+gunicorn
