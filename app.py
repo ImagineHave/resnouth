@@ -10,21 +10,7 @@ app.config['JWT_SECRET_KEY'] = os.environ['JWT_SECRET_KEY']
 
 jwt = JWTManager(app)
 
-uri = os.environ['MONGO_URI']
-client = pymongo.MongoClient(uri)
-db = client.get_default_database()
-
 @app.route('/protectedResouce', methods=['GET'])
 @jwt_access_token_required
 def getProtectedResource():
     return jsonify({'resouce': 'This is the protected resource'})
-
-    
-def authenticate(username, password):
-    user = db.users.find_one({"email":username})
-    if user and user['password'] == password:
-        return user
-
-def identity(payload):
-    user_id = payload['identity']    
-    return db.users.find_one({"email":user_id})
