@@ -1,1 +1,1 @@
-web: gunicorn resnouth:app
+web: gunicorn resnouth_package:resnouth_instance
